@@ -7,7 +7,8 @@ const users = [
     { name: "John", age: 25 },
     { name: "Peter", age: 30 },
     { name: "Kate", age: 15 }
-  ];
+];
+
 
 
 

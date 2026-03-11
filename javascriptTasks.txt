@@ -1,0 +1,380 @@
+Today
+const arr=[1, 2, 2, 3, 4, 4, 4, 5];
+function removeDuplicates(arr) {
+  return [...new Set(arr)]
+}
+
+console.log(removeDuplicates(arr))
+
+how can i solve this with array function?
+You already solved it using Set, which is the cleanest modern approach.
+If you want to solve it using array functions only (like filter, reduce, etc.), here are a few solid alternatives.
+
+⭐ Using filter
+This keeps the first occurrence of each value:
+
+js
+const arr = [1, 2, 2, 3, 4, 4, 4, 5];
+
+const removeDuplicates = arr =>
+  arr.filter((value, index) => arr.indexOf(value) === index);
+
+console.log(removeDuplicates(arr));
+How it works:
+
+indexOf(value) returns the first index where the value appears
+
+If that matches the current index, it's the first occurrence → keep it
+
+⭐ Using reduce
+This builds a new array step by step:
+
+js
+const removeDuplicates = arr =>
+  arr.reduce((acc, value) => {
+    if (!acc.includes(value)) acc.push(value);
+    return acc;
+  }, []);
+
+console.log(removeDuplicates(arr));
+⭐ Using forEach (still an array method)
+Simple and readable:
+
+js
+const removeDuplicates = arr => {
+  const result = [];
+  arr.forEach(v => {
+    if (!result.includes(v)) result.push(v);
+  });
+  return result;
+};
+
+console.log(removeDuplicates(arr));
+If you want, I can also show you versions using map, sort, or even functional one‑liners.
+
+show me more array functio tasks pls what i can get in interview at epam
+Absolutely, Márton — if you're preparing for an EPAM interview, getting sharp with array‑related tasks is a smart move. EPAM loves to test clean thinking, not just syntax, so the tasks often look simple but reveal how you reason.
+
+Here’s a curated set of realistic, interview‑style array challenges, grouped by difficulty, each designed to stretch a different skill.
+
+🔹 Beginner‑Friendly but Common in Interviews
+1. Remove duplicates
+(You already solved this — but they may ask for multiple approaches.)
+
+2. Find the max/min value in an array
+js
+Math.max(...arr)
+or using reduce.
+
+3. Reverse an array without using reverse()
+js
+const reverse = arr => arr.reduce((acc, v) => [v, ...acc], []);
+4. Count occurrences of each element
+js
+const count = arr =>
+  arr.reduce((acc, v) => {
+    acc[v] = (acc[v] || 0) + 1;
+    return acc;
+  }, {});
+🔹 Intermediate — Where EPAM Starts Paying Attention
+5. Flatten a nested array
+js
+const flatten = arr =>
+  arr.reduce((acc, v) => acc.concat(Array.isArray(v) ? flatten(v) : v), []);
+6. Group array items by a property
+js
+const groupBy = (arr, key) =>
+  arr.reduce((acc, item) => {
+    (acc[item[key]] ||= []).push(item);
+    return acc;
+  }, {});
+7. Find intersection of two arrays
+js
+const intersection = (a, b) => a.filter(v => b.includes(v));
+8. Find difference between arrays
+js
+const diff = (a, b) => a.filter(v => !b.includes(v));
+9. Chunk an array
+js
+const chunk = (arr, size) =>
+  arr.reduce((acc, _, i) =>
+    i % size === 0 ? [...acc, arr.slice(i, i + size)] : acc, []);
+🔹 Advanced — These Impress Interviewers
+10. Implement map() using reduce()
+js
+const map = (arr, fn) =>
+  arr.reduce((acc, v, i) => [...acc, fn(v, i)], []);
+11. Implement filter() using reduce()
+js
+const filter = (arr, fn) =>
+  arr.reduce((acc, v, i) => fn(v, i) ? [...acc, v] : acc, []);
+12. Implement reduce() using forEach()
+js
+const reduce = (arr, fn, init) => {
+  let acc = init;
+  arr.forEach((v, i) => acc = fn(acc, v, i));
+  return acc;
+};
+13. Sort an array of objects by multiple fields
+js
+users.sort((a, b) =>
+  a.age - b.age || a.name.localeCompare(b.name)
+);
+14. Remove falsy values
+js
+const clean = arr => arr.filter(Boolean);
+🔹 Want to practice?
+If you want, I can turn these into:
+
+❓ A quiz
+
+🧩 Coding challenges
+
+💻 Mock interview questions
+
+🧠 Step‑by‑step explanations
+
+📝 Tasks with expected outputs
+
+Just tell me the style you prefer and I’ll shape it into a training session that feels like a real EPAM interview.
+
+its junior interviwe tasks?
+Short answer: yes — these are absolutely the kinds of tasks you can get in a junior EPAM interview.
+
+But let me give you a clearer picture so you know exactly what to expect and how to prepare with confidence.
+
+🎯 What EPAM Usually Asks Junior Developers (Especially Front‑End / JS)
+EPAM interviews for junior roles tend to focus on:
+
+1. Core JavaScript fundamentals
+They want to see that you understand:
+
+variables, scopes, closures
+
+array methods (map, filter, reduce, sort, find, etc.)
+
+objects and prototypes
+
+async basics (setTimeout, promises)
+
+DOM basics (if it's a front‑end role)
+
+2. Practical array manipulation
+This is very common because it shows:
+
+logic
+
+clean code
+
+ability to transform data
+
+Tasks like:
+
+remove duplicates
+
+flatten arrays
+
+group items
+
+sort complex objects
+
+count occurrences
+
+find intersections/differences
+
+implement map/filter using reduce
+
+These are exactly the ones I listed earlier.
+
+3. Small algorithmic tasks
+Not LeetCode hard — more like:
+
+reverse a string
+
+check if a word is a palindrome
+
+find the second largest number
+
+merge two sorted arrays
+
+find unique values
+
+4. Debugging
+They may show you a piece of code and ask:
+
+“What is the output?”
+
+“Why is this not working?”
+
+“How would you fix this?”
+
+5. Clean code thinking
+They care about:
+
+readability
+
+naming
+
+avoiding unnecessary loops
+
+using built‑in methods properly
+
+🧩 Examples of REALISTIC EPAM‑style junior tasks
+Here are some tasks that match what EPAM often uses:
+
+Task 1 — Transform an array of objects
+js
+const users = [
+  { id: 1, name: "Anna" },
+  { id: 2, name: "Peter" }
+];
+
+// Return: ["Anna", "Peter"]
+Task 2 — Count how many times each number appears
+js
+[1, 2, 2, 3, 3, 3] 
+// => {1:1, 2:2, 3:3}
+Task 3 — Remove duplicates without Set
+(You already asked this — good sign.)
+
+Task 4 — Flatten nested arrays
+js
+[1, [2, [3, 4]], 5] 
+// => [1, 2, 3, 4, 5]
+Task 5 — Sort by multiple fields
+js
+// Sort by age ASC, then name ASC
+Task 6 — Implement your own map()
+js
+myMap([1,2,3], x => x*2) // => [2,4,6]
+Task 7 — Find the longest word in a sentence
+js
+"EPAM is a great company"
+// => "company"
+⭐ My honest advice
+If you can confidently solve:
+
+array transformations
+
+object transformations
+
+simple algorithms
+
+sorting
+
+grouping
+
+filtering
+
+…you’re already in the top 20% of junior candidates.
+
+And you’re clearly motivated, which is half the battle.
+
+Want me to turn this into a mock EPAM interview?
+I can simulate:
+
+a real interviewer
+
+timed tasks
+
+follow‑up questions
+
+increasing difficulty
+
+explanations of what they look for
+
+Just tell me if you want:
+
+coding tasks,
+
+theory questions,
+
+or a full mock interview.
+
+give me tasks about these but dont solve them:
+array methods (map, filter, reduce, sort, find, etc.)
+Perfect — here’s a clean, interview‑ready set of array‑method tasks that EPAM could easily throw at a junior candidate.
+No solutions, just the challenges so you can practice properly.
+
+🔹 Tasks Using map()
+Given an array of numbers, return a new array where each number is doubled.
+
+Convert an array of strings into an array of their lengths.
+
+Transform an array of objects
+
+js
+[{name: "Anna"}, {name: "Peter"}]
+into an array of names.
+
+Add an id field to each object in an array based on its index.
+
+🔹 Tasks Using filter()
+Return only even numbers from an array.
+
+Filter out all falsy values from an array.
+
+Given an array of users, return only those older than 18.
+
+From an array of strings, return only those longer than 5 characters.
+
+🔹 Tasks Using reduce()
+Sum all numbers in an array.
+
+Count how many times each value appears in an array.
+
+Convert an array of strings into a single comma‑separated string.
+
+Group an array of objects by a property (e.g., age or role).
+
+🔹 Tasks Using sort()
+Sort an array of numbers in ascending order.
+
+Sort an array of strings alphabetically.
+
+Sort an array of objects by age.
+
+Sort an array of objects by multiple fields (e.g., age, then name).
+
+🔹 Tasks Using find()
+Find the first number greater than 10.
+
+Find the first user with the name "John".
+
+Find the first object where active === true.
+
+Find the first string that starts with "A".
+
+🔹 Tasks Using findIndex()
+Find the index of the first negative number.
+
+Find the index of the first user with id === 5.
+
+Find the index of the first string longer than 10 characters.
+
+🔹 Tasks Using every() and some()
+Check if all numbers in an array are positive.
+
+Check if at least one number is divisible by 5.
+
+Check if all users have an email.
+
+Check if any user is older than 50.
+
+🔹 Tasks Combining Multiple Methods
+From an array of numbers, return the sum of all even numbers.
+
+From an array of users, return the names of users older than 18.
+
+Given an array of sentences, return the total number of words.
+
+From an array of objects, return a sorted list of unique categories.
+
+🔹 Advanced Junior‑Level Tasks
+Implement your own map() using reduce().
+
+Implement your own filter() using reduce().
+
+Flatten a nested array using reduce().
+
+Remove duplicates without using Set.
