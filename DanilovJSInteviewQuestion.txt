@@ -1,4 +1,4 @@
-1.what are the Exports and Default export in ES module?
+1. what are the Exports and Default export in ES module?
 What is an ES module?
 
 ES module means the official JavaScript module system introduced in ECMAScript.
@@ -23,4 +23,66 @@ import { name, sayHi } from "./file.js";
 
 So when your mentor asks about Exports and Default export in ES modules, they mean this JavaScript module system.
 
+2. How does async/await work? How to handle errors when using it?
 
+async/await is a cleaner way to work with Promises.
+An async function always returns a Promise, and await pauses the function execution until the Promise is resolved or rejected.
+It makes asynchronous code easier to read and write, especially compared to long .then() chains.
+For error handling, we usually use try/catch inside an async function. If the awaited Promise rejects, or if we manually throw an error, the catch block handles it.
+
+-async function returns a Promise
+-await waits for Promise result
+-try/catch handles rejected Promises
+-it improves readability
+
+3. The 4 Most Common Ways to Iterate Through an Object in JavaScript
+
+const user = {
+  name:"Dima",
+  age:26
+}
+
+for...in loop (iterates over keys)
+This is the most traditional way.
+
+js
+for (const key in user) {
+  console.log(key, user[key]);
+}
+2️⃣ Object.keys() → array of keys
+js
+Object.keys(user).forEach(key => {
+  console.log(key, user[key]);
+});
+3️⃣ Object.values() → array of values
+js
+Object.values(user).forEach(value => {
+  console.log(value);
+});
+4️⃣ Object.entries() → array of [key, value] pairs
+This is the most elegant and interview‑friendly.
+
+js
+Object.entries(user).forEach(([key, value]) => {
+  console.log(key, value);
+});
+
+4. What are the "falsy" values in JavaScript? How does Logical OR (||) differ from Nullish Coalescing (??)?
+For example:
+
+console.log(0 || 123);   // 123
+console.log(0 ?? 123);   // 0
+
+console.log("" || "hi"); // "hi"
+console.log("" ?? "hi"); // ""
+
+With ||, JavaScript returns the right side if the left side is falsy.
+With ??, JavaScript returns the right side only if the left side is null or undefined.
+
+So if 0 or "" are valid values, ?? is usually safer than || for default values.
+
+A natural interview version you could say out loud:
+
+Falsy values are values that are treated as false in conditions. These are false, 0, -0, 0n, empty string, null, undefined, and NaN.
+The difference between || and ?? is that || falls back on the right side for any falsy value, while ?? falls back only for null or undefined.
+For example, 0 || 123 returns 123, but 0 ?? 123 returns 0.
