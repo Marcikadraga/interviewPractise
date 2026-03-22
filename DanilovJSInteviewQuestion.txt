@@ -1,0 +1,26 @@
+1.what are the Exports and Default export in ES module?
+What is an ES module?
+
+ES module means the official JavaScript module system introduced in ECMAScript.
+(ECMAScript is the standard/specification that JavaScript is based on)
+
+That is the syntax with:
+
+export
+import
+export default
+
+Example:
+
+export const name = "Marci";
+export function sayHi() {
+  console.log("Hi");
+}
+
+and in another file:
+
+import { name, sayHi } from "./file.js";
+
+So when your mentor asks about Exports and Default export in ES modules, they mean this JavaScript module system.
+
+
